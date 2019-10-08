@@ -1,7 +1,8 @@
 package main
 
 import (
-	"html/template"
+	"fmt"
+	"text/template"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -23,7 +24,13 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
 
 
 func main(){
+
+	files := http.FileServer(http.Dir(config.Static))
+	fmt.Println(files)
+	http.Handle("/static/", http.StripPrefix("/static/", files))
+
 	http.Handle("/", &templateHandler{filename: "message.html"})
+	http.Handle("/login", &templateHandler{filename: "login.html"})
 
 	if err := http.ListenAndServe(":8080", nil); err != nil{
 		log.Fatal("ListenAndServe:", err)
