@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -45,6 +46,7 @@ func (r *room)ServeHTTP(w http.ResponseWriter, req *http.Request){
 		r.leave <- client
 	}()
 	go client.write()
+	fmt.Println("read")
 	client.read()
 }
 
