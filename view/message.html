@@ -277,6 +277,7 @@
                     alert("エラー：WebSocket接続が行われていません。");
                     return false;
                 }
+                console.log($(".message-input input").val())
                 socket.send($(".message-input input").val())
                 console.log("send!")
                 $(".message-input input").val("");
@@ -292,8 +293,7 @@
                 alert("接続が終了しました。")
             }
             socket.onmessage = function (e) {
-                messages.append(e.data)
-                console.log(e.data)
+                var message = e.data;
                 $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
                 $('.message-input input').val(null);
                 $('.contact.active .preview').html('<span>You: </span>' + message);

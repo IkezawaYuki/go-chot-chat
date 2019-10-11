@@ -38,6 +38,8 @@ func main(){
 	r := newRoom()
 	http.Handle("/room", r)
 
+	go r.run()
+
 	log.Println("Webサーバーを開始します。ポート：", *addr)
 
 	if err := http.ListenAndServe(*addr, nil); err != nil{

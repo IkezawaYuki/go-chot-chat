@@ -84,9 +84,10 @@ $(function () {
         socket.onmessage = function (e) {
             messages.append(e.data)
             console.log(e.data)
-            $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+            console.log("iiii")
+            $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + messages + '</p></li>').appendTo($('.messages ul'));
             $('.message-input input').val(null);
-            $('.contact.active .preview').html('<span>You: </span>' + message);
+            $('.contact.active .preview').html('<span>You: </span>' + messages);
             $(".messages").animate({ scrollTop: $(document).height() }, "fast");
         }
     }
