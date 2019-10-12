@@ -277,9 +277,7 @@
                     alert("エラー：WebSocket接続が行われていません。");
                     return false;
                 }
-                console.log($(".message-input input").val())
                 socket.send($(".message-input input").val())
-                console.log("send!")
                 $(".message-input input").val("");
                 return false;
             }
