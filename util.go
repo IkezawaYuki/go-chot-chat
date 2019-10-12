@@ -38,7 +38,7 @@ func loadConfig(){
 		panic(err)
 	}
 
-	files, err = os.Open("config.json")
+	files, err = os.Open("secret.json")
 	if err != nil{
 		panic(err)
 	}
