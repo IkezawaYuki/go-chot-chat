@@ -15,7 +15,7 @@ type authHandler struct {
 
 
 func (h *authHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
-	if _, err := r.Cookie("auth"); err == http.ErrNoCookie{
+	if cookie, err := r.Cookie("auth"); err == http.ErrNoCookie || cookie.Value == ""{
 		w.Header().Set("Location", "/login")
 		w.WriteHeader(http.StatusTemporaryRedirect)
 	} else if err != nil{
@@ -59,8 +59,10 @@ func loginHandler(w http.ResponseWriter, r *http.Request){
 		if err != nil{
 			log.Fatalln("ユーザーの認証に失敗しました。", provider, "- ", err)
 		}
+		fmt.Println(user.AvatarURL())
 		authCookieValue := objx.New(map[string]interface{}{
 			"name": user.Name(),
+			"avatar_url": user.AvatarURL(),
 		}).MustBase64()
 		http.SetCookie(w, &http.Cookie{
 			Name:"auth",

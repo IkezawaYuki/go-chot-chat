@@ -153,10 +153,9 @@
         <div class="contact-profile">
             <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
             <p>Harvey Specter</p>
-            <div class="social-media">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-                <i class="fa fa-instagram" aria-hidden="true"></i>
+            <div class="logout">
+                <a href="/logout">ログアウト</a>
+
             </div>
         </div>
         <div class="messages">
@@ -293,15 +292,13 @@
             }
             socket.onmessage = function (e) {
                 var message = JSON.parse(e.data)
-                console.log(message)
                 var username = $("#username").text();
-                console.log(username)
 
                 var msg_name = message.Name;
                 if(username === msg_name) {
-                    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message.Message + '</p></li>').appendTo($('.messages ul'));
+                    $('<li class="sent"><img src="'+ message.AvatarURL +'" alt="" /><p>' + message.Message + '</p></li>').appendTo($('.messages ul'));
                 } else {
-                    $('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message.Message + '</p></li>').appendTo($('.messages ul'));
+                    $('<li class="replies"><img src="'+ message.AvatarURL +'" alt="" /><p>' + message.Message + '</p></li>').appendTo($('.messages ul'));
                 }
 
                 $('.message-input input').val(null);

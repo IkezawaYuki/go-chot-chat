@@ -528,17 +528,17 @@ body {
 #frame .content .contact-profile p {
     float: left;
 }
-#frame .content .contact-profile .social-media {
+#frame .content .contact-profile .logout {
     float: right;
 }
-#frame .content .contact-profile .social-media i {
-    margin-left: 14px;
+#frame .content .contact-profile .logout a {
+    margin-right: 20px;
     cursor: pointer;
 }
-#frame .content .contact-profile .social-media i:nth-last-child(1) {
-    margin-right: 20px;
-}
-#frame .content .contact-profile .social-media i:hover {
+/*#frame .content .contact-profile .logout a:nth-last-child(1) {*/
+    /*margin-right: 20px;*/
+/*}*/
+#frame .content .contact-profile .logout a {
     color: #435f7a;
 }
 #frame .content .messages {
