@@ -72,7 +72,9 @@ func main(){
 		w.WriteHeader(http.StatusTemporaryRedirect)
 	})
 
-	r := newRoom(UseAuthAvatar)
+	//r := newRoom(UseAuthAvatar)
+	r := newRoom(UseGravatar)
+
 
 	http.Handle("/room", r)
 
