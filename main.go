@@ -61,6 +61,7 @@ func main(){
 	http.Handle("/chat", MustAuth(&templateHandler{filename:"message.html"}))
 	http.Handle("/login", &templateHandler{filename: "login.html"})
 	http.HandleFunc("/auth/", loginHandler)
+	http.Handle("/upload", &templateHandler{filename: "upload.html"})
 	http.HandleFunc("/logout", func(w http.ResponseWriter, r *http.Request){
 		http.SetCookie(w, &http.Cookie{
 			Name: "auth",
