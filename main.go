@@ -46,8 +46,6 @@ func main(){
 	var addr = flag.String("addr", ":8080", "アプリケーションのアドレス")
 	flag.Parse()
 	gomniauth.SetSecurityKey(pass)
-	fmt.Println(security.ID)
-	fmt.Println(security.Key)
 	gomniauth.WithProviders(
 		facebook.New(security.ID, security.Key, "http://localhost:8080/auth/callback/facebook"),
 		github.New(security.ID, security.Key,"http://localhost:8080/auth/callback/github"),
@@ -72,10 +70,13 @@ func main(){
 		w.Header()["Location"] = []string{"/chat"}
 		w.WriteHeader(http.StatusTemporaryRedirect)
 	})
+	http.Handle("/avatars/",
+		http.StripPrefix("/avatars/",
+			http.FileServer(http.Dir("./avatars"))))
 
 	//r := newRoom(UseAuthAvatar)
-	r := newRoom(UseGravatar)
-
+	//r := newRoom(UseGravatar)
+	r := newRoom(UseFileSystemAvatar)
 
 	http.Handle("/room", r)
 
