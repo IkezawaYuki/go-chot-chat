@@ -16,6 +16,7 @@ import (
 )
 
 const pass = "aiueo"
+var avatars Avatar = UseFileSystemAvatar
 
 type templateHandler struct {
 	once sync.Once

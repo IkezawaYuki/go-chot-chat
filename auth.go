@@ -9,7 +9,23 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	gomniauthauthcommon "github.com/stretchr/gomniauth/common"
+
 )
+
+type ChatUser interface {
+	UniqueID() string
+	AvatarURL() string
+}
+
+type chatUser struct {
+	gomniauthauthcommon.User
+	uniqueID string
+}
+
+func (u chatUser)UniqueID()string{
+	return u.uniqueID
+}
 
 type authHandler struct {
 	next http.Handler
