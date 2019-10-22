@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/gomniauth/providers/github"
 	"github.com/stretchr/gomniauth/providers/google"
 	"github.com/stretchr/objx"
+	"go-chot-chat/mail"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -66,6 +67,7 @@ func main(){
 	http.Handle("/login", &templateHandler{filename: "login.html"})
 	http.HandleFunc("/auth/", loginHandler)
 	http.Handle("/upload", &templateHandler{filename: "upload.html"})
+	http.HandleFunc("/_ah/mail/", mail.IncomingMail)
 	http.HandleFunc("/logout", func(w http.ResponseWriter, r *http.Request){
 		http.SetCookie(w, &http.Cookie{
 			Name: "auth",
